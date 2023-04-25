@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Weather Or Not";
+}
+
+<h2>WeatherJS</h2>
+
+<!-- Printing the raw API response to the page -->
+<div id="api-response"></div>
+
+<script>
+  $(document).ready(function () {
+    $.get("@Url.Action("GetWeather", "Home")", function (response) {
+      // response
+      console.log(response);
+      $("#api-response").text(response);  // set the inner text of the element to the API response
+    }, "text"); // specify the data type as text
+  });
+</script>
+
+<div class="col-md-12">
+    <h1><center><b>Current Conditions in <span data-bind="text:name"></span></b></center></h1>
+</div>
+
+<div class="col-md-12">
+    <center>
+        <table>
+            <tr>
+                <th>Longitude</th>
+                <th>
+                    <span data-bind="text:coord.lon"></span>
+                </th>
+            </tr>
+
+            <tr>
+                <th>Latitude</th>
+                <th>
+                    <span data-bind="text:coord.lat"></span>
+                </th>
+            </tr>
+
+            <tr>
+                <th>Temperature</th>
+                <th>
+                    <span data-bind="text:main.temp"></span>&deg; F
+                </th>
+            </tr>
+
+            <tr>
+                <th>Humidity</th>
+                <th>
+                    <span data-bind="text:main.humidity"></span>&deg; F
+                </th>
+            </tr>
+        </table>
+    </center>
+</div>
+
+<script>
+    var weather = Object();
+    $(document).ready(function () {
+            $.get("@Url.Action("GetWeather", "Home")", function (response) {
+                //response
+                console.log(response);
+                weather = ko.mapping.fromJS(response);  //populate the weather object
+                ko.applyBindings(weather);
+            });
+    });
+</script>
