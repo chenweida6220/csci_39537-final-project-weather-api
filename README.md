@@ -1,5 +1,10 @@
 # csci_39537-final-project-weather-api
 
-•	What are the different endpoints that a client can use? 
-•	Sample request bodies, if applicable? 
-•	Sample response body? (There should only be one, as this should be consistent. More information on this further below). 
+## Endpoints
+1. /api/cities/{id} - Returns information for a specific city.
+2. /api/weather/{id} - Updates an existing weather data.
+3. /api/weather/{id} - Deletes an existing weather data.
+
+## Sample request bodies
+
+## Sample response body
